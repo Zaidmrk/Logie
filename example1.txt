@@ -1,0 +1,535 @@
+%%%%
+\documentclass{article} % this is for font size and page size
+%[15pt, a4paper] add , twocolumn after a4paper for making the paper in two columns, if needed
+%\usepackage{fancyhdr}
+\usepackage[table]{xcolor}
+\usepackage[affil-it]{authblk} 
+\usepackage{etoolbox}
+\usepackage{multirow} % this package for the table
+\usepackage[margin=16mm]{geometry}
+\pagenumbering{}
+\makeatletter
+
+
+
+\patchcmd{\@maketitle}{\LARGE \@title}{\fontsize{16}{19.2}\selectfont\@title}{}{}
+\title{\textbf{Is Your Organization's Ecosystem Ready to Adopt AI Technologies? \\
+\vspace{0.5 cm}
+ \fontsize{12}{12} \textbf{\textbf{AI Technology Adoption by Systems Engineering Lens}}}}
+
+\author{\textbf{Zaid Kbah}}
+
+\providecommand{\keywords}[1]
+{
+  \fontsize{12}{12}\textbf{\textit{Keywords---}} #1
+}
+
+\date{} % Comment this line to show today's date
+
+
+
+\begin{document}
+
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\noindent \fontsize{12}{15}\selectfont  The Technology Readiness Levels (TRLs) were developed by NASA as a metric to quantify and assess the maturity of technology for deployment and scaling up and evaluate risks. With a slight variation from NASA TRLs' interpretation, the Department of Defense (DoD) embraced TRLs in their technology assessment for measuring the maturity of technologies. In recent years, TRLs have gained popularity and wider adoption not only in the aerospace and defense industries but also in other fields such as healthcare, energy, and transportation. TRLs have proven to be a valuable tool for these industries to evaluate the readiness and potential of emerging technologies, assess risks, and make informed budgetary and investment decisions. For instance, in the healthcare industry, TRLs were used to assess the readiness of new medical devices and treatments and to design strategic pathways for designing interventions that can support shifting from a reactive to a proactive approach \cite{kral_ethics_2021}, while in the energy sector, TRLs are used to evaluate the feasibility of new renewable energy sources. Additionally, TRLs are being used by transportation companies to assess the technical development and readiness of autonomous vehicles and other emerging technologies. As the importance of innovation continues to grow across industries and different sectors and the requirement to evaluate and continuously assess the inventions' status becames essential, the use of TRLs are expected to become even more widespread, which can facilitate the adoption and scaling up of new technologies across diverse sectors. \\
+
+\noindent  As the current TRLs neatly model the maturity of physically produced items, they fall short in assessing data-based technologies such as those emerging from Artificial Intelligence (AI) \cite{eljasik-swoboda_assessing_2019}. Recently, several Technology Readiness Levels frameworks were developed for assessing the maturity of AI and machine learning (ML) technologies. For instance, the REASINESSnavigator tool has been extended to incorporate AI and ML relevant readiness levels by mainly focusing on assessing the maturity in two main aspects, namely Market Readiness Levels (MRLs) and Technology Readiness (TRLs)\cite{eljasik-swoboda_assessing_2019}. Building on the fact that inventions are only ideas, while innovation are successful and profitable inventions, the REASINESSnavigator assessment tool hypothesizes that in addition to the technology being mature and ready for deployment, there is still a need for assessing the demand and market maturity for successfully adopting and using the technology by consumers. Therefore, technology can only be considered mature and ready for deployment when there is a mature market and demand, and the technology is at level 9 on the TRLs scale. Additionally, the Machine Learning Technology Readiness Levels (MLTRL) framework is a tool that aims to establish a principled process to ensure the development of robust, reliable, and high-quality AI and ML systems \cite{lavin_technology_2022}. The MLTRL framework is streamlined to fit ML (which can also be applied to AI technologies) workflow and development, by ensuring incorporation and consideration for key characteristics that distinct these systems from the traditional systems and software engineering products. The MLTRL tool draws on decades of AI and ML development, from research through production, across domains and diverse data scenarios \cite{lavin_technology_2022}. \\
+
+\noindent The development of engineering systems follows well-established and defined processes for developing, evaluating, testing, and prototyping with the aim of producing high-quality and reliable products and systems. On the other hand, the process of developing and deploying AI and ML systems is accelerated without proper due diligence or established regulations and procedures, which can lead to technical debt and issues, model misuse and failures, and other social consequences \cite{lavin_technology_2022}. Therefore, studies are attempting to develop and adjust the current TRLs for assessing AI and ML technologies \cite{martinez-plumed_futures_2021} while others have already succeeded in developing TRLs that are comparable and applicable (to a certain degree) to AI and ML technologies \cite{lavin_technology_2022} \cite{eljasik-swoboda_assessing_2019}. \\
+
+\noindent The TRLs frameworks and methods enable consistent and uniform discussions about technical maturity across various types of technologies, and after adjustments and tailoring their application can be expanded to include AI and ML \cite{martinez-plumed_futures_2021}. The TRL frameworks offer guidance and communication tools for developing these technologies. The TRLs frameworks are essential to the advancement of AI technologies since they offer a standardized approach for evaluating the maturity of AI technologies. By utilizing the TRL frameworks, responsible and reliable development and deployment of AI technologies can be improved (maybe guarantied), while ensuring compliance.\\
+
+%HRL introduction
+
+\noindent Along with TRLs, the Human Readiness Levels (HRLs) were developed and used by DoD to overcome some of TRLs' limitations and gaps related to its inability to incorporate human aspects during the technology development life cycle. While TRLs assess the maturity of individual technology or product with a view towards operational use \cite{Sauser}, the HRLs capture interactions between technologies and humans and provide an understanding of users’ characteristics that are necessary for system deployment and usage \cite{see_judi}. \\
+
+\noindent The incorporation of HRLs have become increasingly important in the technology development and deployment process. HRLs were initially developed to complement TRLs and provide a comprehensive understanding of the human factors involved in the development and deployment of new technologies. HRLs capture a range of factors such as user interface design, human performance, and cognitive abilities that are essential to ensure successful adoption and use of new technologies. For example, when developing new medical devices, it is crucial to consider the ease of use for healthcare providers and patients, which can be evaluated using HRLs \cite{schwartz_human_2021}. In the automotive industry, the use of Human Readiness Levels (HRLs) can prove to be a valuable tool for assessing the safety of self-driving cars \cite{see_judi}. By considering human factors such as response time and attention span, HRLs can offer a comprehensive evaluation of the readiness of a system for autonomous driving. As such, the use of HRLs can support the development of safe and reliable autonomous driving systems, while ensuring that the technology is aligned with human capabilities and limitations. This approach can lead to increased confidence in the safety and effectiveness of autonomous driving systems, and ultimately facilitate their wider adoption \cite{see_judi}. \\
+
+\noindent Assessing the quality of AI systems interactions with human (and vice versa) is crucial in achieving effective and safe interactions between humans and AI. High quality and considerations of these interactions can ensure successful adoption.
+HRLs scale provides a structured approach for assessing the readiness of AI systems to interact with humans in a seamless manner. HRLs not only evaluate the readiness of humans to interact with AI systems but also the readiness of the systems to interact with humans. By employing HRLs' framework to evaluate AI systems, we can guarantee that these systems are designed to interact with humans in an optimal manner.\\
+
+
+\noindent The DoD uses of HRLs, as an adjunct to complement and supplement TRLs to address Human System Integration (HIS) issues, helped incorporate human aspects at early stages of technology development. The TRLs and HRLs, together, have successfully been used by DoD programs \cite{schwartz_human_2021} and many other organizations, however, the use cases of the current TRLs and HRLs might not be extended to ML and AI technologies because the characteristics and development cycle of AI and ML technologies are different from other domains of engineering, such as civil and mechanical, which have defined phases from pre-concept to prototyping to deployment \cite{lavin_technology_2020}. While the focus is on developing TRLs for AI and ML (with degree of success), HRLs are not explored, even though HRLs can be a valuable tool in supporting the evaluation of trade-offs between different levels of automation in a system, various human-in-the-loop scenarios, and reshaping of system configurations and architectures \cite{schwartz_human_2021}. Incorporating HRLs alongside TRLs allows for a more holistic approach to technology development and adoption, by ensuring that the human aspect is considered at every stage of the process.\\
+
+
+\noindent Assessing human readiness for AI technologies requires a multidisciplinary approach that involves not only technical and technology experts but also social scientists, ethics specialists, policymakers, and other stakeholders4 \cite{martinez-plumed_futures_2021}. Amidst all, there are several new and emerging fields and disciplines, such as human-centered AI and human-computer interactions (HCI), that put humans in the central focus for creating AI technologies that amplify and augment human capabilities and emphasize collaborative interacting and learning from humans. The human-centered AI study combines human-centered design and AI design and development to transform and define the interaction between humans and AI while ensuring these systems are transparent and trustworthy with respect to human values, ethics, and privacy. Therefore, extending the application of HRLs to assess human-centered AI technologies is important for ensuring that these technologies are ready and mature for safe adoption and use by humans \cite{see_judi}.\\ 
+
+\noindent HRLs metric can help organizations assess the readiness of their systems for human use and identify and mitigate risks associated with human-system interactions. By using HRLs metric, organizations can ensure that their systems are developed with human-centered approach, which can improve user satisfaction, safety, and performance. The HRLs scale provides multiple opportunities to detect human systems issues throughout the life cycle of the system development, which can help organizations avoid costly failures and improve the chances of success in adopting AI technologies. \\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Highlighting flaws
+
+\noindent The increasing adoption of AI and ML technologies creates potential risks and vulnerabilities due to their dynamic and unpredictable behaviors. As AI and ML systems rely on data to learn, they face both known and unknown challenges in their behavior and interactions with the environment. Unfortunately, the current approach for building these technologies is limited by a siloed development process. Models and algorithms are developed in isolated testbeds that sometimes don't reflect real-world scenarios and the broader context of the larger systems where they will eventually be integrated. 
+
+\noindent Furthermore, it should be noted that the integration of AI technologies into complex systems that encompass software, hardware, data, and humans is becoming increasingly challenging for businesses. The challenges associated with integrating AI systems are often cited as a significant contributing factor to the failure of many attempts to adopt AI technologies. These difficulties may arise from a variety of sources, including limitations in the capabilities of AI technologies or the incubator systems, data quality and compatibility issues, and technical challenges in integrating the system with existing infrastructure. Additionally, the unique nature of AI systems that rely on and learn from data introduced known and unknown (hidden) challenges that reshape how systems behave and interact with the surrounding environment. \\
+
+
+\noindent The fragmented and compartmentalized approaches for constructing and developing AI technologies may hinder the effectiveness and practicality of AI systems, as it fails to consider the complexities and nuances of the wider environment in which they will operate. Additionally, these models are oblivious to the downstream tasks and end users and integrated without considering the unpredictable stochastic behavior and consequential failures. Therefore, it is crucial to adopt a more integrated and holistic assessment and evaluation matrices during the development of AI technologies, which considers their eventual deployment within larger systems, and the various contextual factors that may influence their performance and effectiveness. Such an approach requires the involvement of a diverse range of stakeholders and the assessment of the organization ecosystem readiness (in addition to TRLs and HRLs readiness metrics.) \\ 
+
+
+\noindent As an individual measure of technology maturity, the Technology Readiness Level (TRL) scale provides a valuable framework for evaluating its readiness for operational use in a system context. However, it is important to recognize that the assessment of a single technology's maturity is only part of a larger set of concerns that become relevant in a system context. For instance, the integration of multiple technologies, and their interplay, must also be considered to ensure that the system as a whole is mature enough for operational use. In this way, a more comprehensive evaluation of a system's readiness involves looking beyond individual technology maturity and considering broader inter-dependencies between system components .
+
+\noindent While a technology that scores high on the TRLs scale is considered mature, but this does not necessarily mean it is ready for integration into a complex system. TRLs are a method for estimating the maturity of technologies during the development and acquisition phases of a program, and it enables consistent and uniform discussions of technical maturity across different types of technology. Nevertheless, the appropriateness of a technology for a specific complex system depends on various factors, such as the system's requirements, compatibility, and safety considerations. Therefore, further testing and evaluation may be necessary to determine whether a mature technology is suitable for integration into a complex system based on various factors, such as the system's requirements, compatibility, and safety considerations \cite{eljasik-swoboda_assessing_2019}.\\
+
+
+% integration$
+\noindent The Integration Readiness Levels (IRLs) is a metric that is used to evaluate the readiness of a system to be integrated into another system. It provides a measure of the maturity of the integration process, considering factors such as the compatibility of the systems, the complexity of the integration, and the level of testing and evaluation that has been conducted. The IRLs provide a standardized way to assess the maturity of a system for integration, which can help to identify potential risks and ensure that the integration process is as smooth and effective as possible. Additionally, given the increasing adoption of AI systems for a wide range of applications, the need for a standardized metric for assessing integration readiness has become more pressing.\\
+
+\noindent The IRLs were introduced to support the limitation of TRLs in assessing interfaces while helping facilitate the smooth integration of the acquired systems. While the TRLs are only used for evaluating the maturity of a discrete technology or element in a silo, the IRL considers connections and linkages of technologies and components and  while integrated into a system / or while working together \cite{London_2015}. According to London et al. 2005, while TRL is used for “considering discrete technology elements, IRL is only limited to connecting these technology links between components.”\\
+
+\noindent As AI adoption becomes more prevalent, IRLs play a critical role in ensuring successful integration with complex, multi-interface systems. It is essential to assess integration feasibility early in the program to effectively manage and plan for the success of the overall System of Systems integration. Given AI technologies are constantly changing and unpredictable, which can effect on the overall system performance, a robust understanding of the system's maturity and the potential impact of the AI technologies is crucial.\\
+
+\noindent Additionally, integrating AI within existing systems may require significant changes to the system architecture and workflows, which can be difficult and time-consuming to implement. Assessing the enterprise-wide readiness levels for integrating technology is an area under study. While the use of TRLs and HRLs for AI and ML are still not fully explored, it is essential to develop a concept that does not only consider the development of TRLs for AI and ML technologies with comprehensive and end-user perspective but also a readiness level for assessing the feasible integration of these technologies into a system. There are a couple of studies that emphasize the need to consider System Readiness Levels (SRLs), which incorporate TRLs and introduce Integration Readiness Levels (IRLs), for DoD \cite{sauser_311_2009}. These studies discuss the integration of systems within a system (at different levels – system, sub-system, component, etc.) but cannot be generalized to AI and ML technologies. \\
+
+
+\noindent Considering the competitive advantage that AI and ML can bring to businesses, now organizations are rushing to adopt these technologies. However, the integration of AI technologies into complex systems is becoming increasingly challenging for businesses and a reason behind the failure of many attempts to adopt AI technologies. This could be because AI and ML technologies do not only require a significant amount of quality data and computational power, as well as specialized hardware and software infrastructure to properly be integrated, but also an ecosystem that is mature for adopting these transformative technologies smoothly. Having an understanding of the organization ecosystem readiness may increase the probability of adopting AI successfully \cite{johnk_ready_2021}. Accordingly, organizations need to assess different components of their ecosystems (assets, management, organization resilience to environment changes, capabilities, etc.) to ensure the adoption of AI technologies can be done without disruptions or impact on the other parts of the system. While the research on AI readiness and adoption is still in its infancy, there is no practical guidance on how TRL, HRL and ecosystem readiness and how these readiness metrics can contribute to a greater adoption rate.\\
+
+
+\noindent The current attempts are far from capturing the full dimensions of AI and ML readiness for integration into a system and not considering human interactions with AI and ML technologies. The current studies focus on assessing the readiness of ML and AI technologies from the technical and developer's point of view while falling short by neglecting the end-user perspective (HRLs) and feasible insertion into the ecosystem. Producing a mature technology does not necessarily mean it can be integrated and used within an established system. Since AI and ML technologies are now increasingly being integrated into larger and more complex systems (such as DoD systems), which consist of software, hardware, data, and humans, there is a need for bringing system engineering perspective into AI and ML integration and developing a comprehensive and multi-faceted Ecosystem Assessment Levels (EALs) that is not only applicable to AI and ML technologies but also consider human interactions and integration into a system.\\
+
+\noindent By taking a systems engineering approach, the ecosystem readiness assessment can enable stakeholders (both developers and beneficiaries) to assess trade-offs and make informed design decisions suitable for adopting AI technologies smoothly. Moreover, the ecosystem readiness assessment provides a system-level perspective and insight into both developmental and operational systems. The three dimensions that are related to evaluating individual system components and functions (through TRL), ensuring the technology is developed upon human-centered design (through HRL), and assessing enterprise-wide capability readiness for integrating new technology (ERL), can provide a comprehensive picture of the system's overall readiness for inserting AI capabilities smoothly while minimizing risks. \\
+
+\begin{center}
+\centering \fontsize{14}{15}\selectfont {\textbf{Readiness Levels for Building a Trustworthy AI System}}    
+\end{center}\\
+
+\noindent Deriving from the AI HLEG (High-Level Expert Group on Artificial Intelligence) report on Ethical Guidelines for Trustworthy AI, the interpretation of Trustworthy should not be considered in a literal sense, but rather as a thorough framework that includes various principles, requirements, and criteria \cite{european_commission_joint_research_centre_trustworthy_2021}. \\
+
+\noindent AI systems that are considered trustworthy place humans at the center of their design and function. Such systems are built with a commitment to utilizing them for the betterment of society and the collective good, with the aim of enhancing well-being and serving humanity and the common good. The core principle of trustworthy AI is the prioritization of human needs, values, and ethics in the development and deployment of these systems, to ensure that they operate in a way that aligns with the principles of human dignity and social justice \cite{european_commission_joint_research_centre_trustworthy_2019}. Trustworthiness is defined as a mean to maximize AI systems' benefits while ensuring their risks are managed and minimized (AI HLEG, 2019). Based on the above, trustworthy AI systems are grounded on three main components: Lawfulness (complying with laws and regulations), ethics (complying with fundamental principles and values), and robustness (from both technical and social perspectives) \cite{european_commission_joint_research_centre_trustworthy_2021}. \\
+
+\noindent Developing Technology Readiness Levels (TRLs) and Human Readiness Levels (HRLs) metrics that are tailored for AI systems and encompass the three fundamental elements of trustworthiness (namely, Lawfulness, Ethics and Robustness) throughout their various developmental phases, can facilitate the creation of AI systems that are both deployment-ready (through rigorous developmental evaluation and testing) and trustworthy. Besides, TRLs and HRLs criteria must be adapted to address the distinctive attributes and characteristics of developing AI systems.\\
+
+\noindent To effectively develop AI systems, it is important to understand both their technical aspects and the ethical and legal implications of their use. This requires adapting TRLs and HRLs criteria to the unique attributes of developing AI systems. Additionally, ecosystem readiness levels, which encompass factors such as regulatory compliance, stakeholder engagement, and risk management, should be considered during the design and implementation of AI systems. By taking a comprehensive approach to ecosystem readiness levels, AI systems can be integrated effectively into their wider context, with consideration for the societal, legal, and ethical implications of their deployment. In conclusion, a holistic approach to TRLs, HRLs, and ecosystem readiness levels is essential for ensuring the development and deployment of trustworthy AI systems.\\
+
+
+
+\bibliographystyle{unsrt}
+\bibliography{A}
+
+\end{document}
+
+
+
+@article{grandi_world_2016,
+	title = {World {Humanitarian} {Summit}: {Addressing} {Forced} {Displacement}},
+	volume = {53},
+	issn = {15643913},
+	shorttitle = {World {Humanitarian} {Summit}},
+	url = {https://www.un-ilibrary.org/content/journals/15643913/53/1/5},
+	doi = {10.18356/68ef3c32-en},
+	language = {en},
+	number = {1},
+	urldate = {2023-02-13},
+	journal = {UN Chronicle},
+	author = {Grandi, Filippo},
+	month = jun,
+	year = {2016},
+	pages = {16--18},
+}
+
+@book{marr_artificial_2019,
+	address = {Hoboken},
+	edition = {First Edition},
+	title = {Artificial intelligence in practice: how 50 successful companies used artificial intelligence to solve problems},
+	isbn = {978-1-119-54821-8},
+	shorttitle = {Artificial intelligence in practice},
+	publisher = {Wiley},
+	author = {Marr, Bernard},
+	year = {2019},
+	keywords = {Artificial intelligence, BUSINESS \& ECONOMICS / General, Business planning, Information technology, Management},
+}
+
+@article{fosso_wamba_humanitarian_2022,
+	title = {Humanitarian supply chain: a bibliometric analysis and future research directions},
+	volume = {319},
+	issn = {0254-5330, 1572-9338},
+	shorttitle = {Humanitarian supply chain},
+	url = {https://link.springer.com/10.1007/s10479-020-03594-9},
+	doi = {10.1007/s10479-020-03594-9},
+	language = {en},
+	number = {1},
+	urldate = {2023-02-13},
+	journal = {Annals of Operations Research},
+	author = {Fosso Wamba, Samuel},
+	month = dec,
+	year = {2022},
+	pages = {937--963},
+}
+
+@article{rodriguez-espindola_potential_2020,
+	title = {The potential of emergent disruptive technologies for humanitarian supply chains: the integration of blockchain, {Artificial} {Intelligence} and {3D} printing},
+	volume = {58},
+	issn = {0020-7543, 1366-588X},
+	shorttitle = {The potential of emergent disruptive technologies for humanitarian supply chains},
+	url = {https://www.tandfonline.com/doi/full/10.1080/00207543.2020.1761565},
+	doi = {10.1080/00207543.2020.1761565},
+	language = {en},
+	number = {15},
+	urldate = {2023-02-13},
+	journal = {International Journal of Production Research},
+	author = {Rodríguez-Espíndola, Oscar and Chowdhury, Soumyadeb and Beltagui, Ahmad and Albores, Pavel},
+	month = aug,
+	year = {2020},
+	pages = {4610--4630},
+	file = {Accepted Version:C\:\\Users\\zkbah\\Zotero\\storage\\S28Q7YDY\\Rodríguez-Espíndola et al. - 2020 - The potential of emergent disruptive technologies .pdf:application/pdf},
+}
+
+@article{ma_machine_2020,
+	title = {Machine learning and {AI} in marketing – {Connecting} computing power to human insights},
+	volume = {37},
+	issn = {01678116},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0167811620300410},
+	doi = {10.1016/j.ijresmar.2020.04.005},
+	language = {en},
+	number = {3},
+	urldate = {2023-02-13},
+	journal = {International Journal of Research in Marketing},
+	author = {Ma, Liye and Sun, Baohong},
+	month = sep,
+	year = {2020},
+	pages = {481--504},
+}
+
+
+
+
+
+@article{Chui_Notes_2018,
+	title = {Notes from the AI frontier: Applying AI for social good},
+	shorttitle = {Notes from the AI frontier: Applying AI for social good},
+	url = {https://www.mckinsey.com/~/media/mckinsey/featured/20insights/artificial/20intelligence/applying/20artificial/20intelligence20for/20social/20good/mgi-applying-ai-for-social-good-discussion-paper-dec-2018.ashx},
+	volume = {1},
+    language = {en},
+	number = {1},
+	journal = {McKinsey Global Institute},
+	author = {Chui, Michael},
+	year = {2018},
+	pages = {5--8},
+}
+
+
+@article{Arendt_From_2018,
+	title = {From digital promise to frontline practice: new and emerging technologies in humanitarian action},
+	shorttitle = {From digital promise to frontline practice: new and emerging technologies in humanitarian action},
+	url = {https://www.unocha.org/sites/unocha/files/OCHA/20Technology/20Report.pdf},
+	volume = {1},
+    language = {en},
+	number = {1},
+	journal = {Policy Briefs & Studies - UN OCHA},
+	author = {Arendt-Cassetta, Leonie },
+	year = {2021},
+	pages = {1},
+}
+
+
+
+
+ 
+@article{oleary_artificial_2013,
+	title = {Artificial {Intelligence} and {Big} {Data}},
+	volume = {28},
+	issn = {1541-1672},
+	url = {http://ieeexplore.ieee.org/document/6547979/},
+	doi = {10.1109/MIS.2013.39},
+	number = {2},
+	urldate = {2023-02-13},
+	journal = {IEEE Intelligent Systems},
+	author = {O'Leary, Daniel E.},
+	month = mar,
+	year = {2013},
+	pages = {96--99},
+}
+
+@article{kaplan_siri_2019,
+	title = {Siri, {Siri}, in my hand: {Who}’s the fairest in the land? {On} the interpretations, illustrations, and implications of artificial intelligence},
+	volume = {62},
+	issn = {00076813},
+	shorttitle = {Siri, {Siri}, in my hand},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0007681318301393},
+	doi = {10.1016/j.bushor.2018.08.004},
+	language = {en},
+	number = {1},
+	urldate = {2023-02-13},
+	journal = {Business Horizons},
+	author = {Kaplan, Andreas and Haenlein, Michael},
+	month = jan,
+	year = {2019},
+	pages = {15--25},
+}
+
+@article{sun_applications_2020,
+	title = {Applications of artificial intelligence for disaster management},
+	volume = {103},
+	issn = {0921-030X, 1573-0840},
+	url = {https://link.springer.com/10.1007/s11069-020-04124-3},
+	doi = {10.1007/s11069-020-04124-3},
+	language = {en},
+	number = {3},
+	urldate = {2023-02-13},
+	journal = {Natural Hazards},
+	author = {Sun, Wenjuan and Bocchini, Paolo and Davison, Brian D.},
+	month = sep,
+	year = {2020},
+	pages = {2631--2689},
+}
+
+@article{beduschi_harnessing_2022,
+	title = {Harnessing the potential of artificial intelligence for humanitarian action: {Opportunities} and risks},
+	volume = {104},
+	issn = {1816-3831, 1607-5889},
+	shorttitle = {Harnessing the potential of artificial intelligence for humanitarian action},
+	url = {https://www.cambridge.org/core/product/identifier/S1816383122000261/type/journal_article},
+	doi = {10.1017/S1816383122000261},
+	abstract = {Abstract
+            Data-driven artificial intelligence (AI) technologies are progressively transforming the humanitarian field, but these technologies bring about significant risks for the protection of vulnerable individuals and populations in situations of conflict and crisis. This article investigates the opportunities and risks of using AI in humanitarian action. It examines whether and under what circumstances AI can be safely deployed to support the work of humanitarian actors in the field. The article argues that AI has the potential to support humanitarian actors as they implement a paradigm shift from reactive to anticipatory approaches to humanitarian action. However, it recommends that the existing risks, including those relating to algorithmic bias and data privacy concerns, must be addressed as a priority if AI is to be put at the service of humanitarian action and not to be deployed at the expense of humanitarianism. In doing so, the article contributes to the current debates on whether it is possible to harness the potential of AI for responsible use in humanitarian action.},
+	language = {en},
+	number = {919},
+	urldate = {2023-02-13},
+	journal = {International Review of the Red Cross},
+	author = {Beduschi, Ana},
+	month = apr,
+	year = {2022},
+	pages = {1149--1169},
+	file = {Full Text:C\:\\Users\\zkbah\\Zotero\\storage\\57ARLI54\\Beduschi - 2022 - Harnessing the potential of artificial intelligenc.pdf:application/pdf},
+}
+
+@article{fournier-tombs_towards_2021,
+	title = {Towards a {United} {Nations} {Internal} {Regulation} for {Artificial} {Intelligence}},
+	volume = {8},
+	issn = {2053-9517, 2053-9517},
+	url = {http://journals.sagepub.com/doi/10.1177/20539517211039493},
+	doi = {10.1177/20539517211039493},
+	abstract = {This article sets out the rationale for a United Nations Regulation for Artificial Intelligence, which is needed to set out the modes of engagement of the organisation when using artificial intelligence technologies in the attainment of its mission. It argues that given the increasing use of artificial intelligence by the United Nations, including in some activities considered high risk by the European Commission, a regulation is urgent. It also contends that rules of engagement for artificial intelligence at the United Nations would support the development of ‘good artificial intelligence’, by giving developers clear pathways for authorisation that would build trust in these technologies. Finally, it argues that an internal regulation would build upon the work in artificial intelligence ethics and best practices already initiated in the organisation that could, like the Brussels Effect, set an important precedent for regulations in other countries.},
+	language = {en},
+	number = {2},
+	urldate = {2023-02-13},
+	journal = {Big Data \& Society},
+	author = {Fournier-Tombs, Eleonore},
+	month = jul,
+	year = {2021},
+	pages = {205395172110394},
+}
+
+@inproceedings{poiani_potential_2016,
+	address = {Koloa, HI},
+	title = {Potential of {Collaborative} {Mapping} for {Disaster} {Relief}: {A} {Case} {Study} of {OpenStreetMap} in the {Nepal} {Earthquake} 2015},
+	isbn = {978-0-7695-5670-3},
+	shorttitle = {Potential of {Collaborative} {Mapping} for {Disaster} {Relief}},
+	url = {https://ieeexplore.ieee.org/document/7427206/},
+	doi = {10.1109/HICSS.2016.31},
+	urldate = {2023-02-13},
+	booktitle = {2016 49th {Hawaii} {International} {Conference} on {System} {Sciences} ({HICSS})},
+	publisher = {IEEE},
+	author = {Poiani, Thiago Henrique and Dos Santos Rocha, Roberto and Degrossi, Livia Castro and Porto De Albuquerque, Joao},
+	month = jan,
+	year = {2016},
+	pages = {188--197},
+}
+
+
+
+@article{Spencer_humanitarian_2021,
+	title = {Humanitarian {AI} : the hype, the hope and the future},
+	shorttitle = {network paper},
+	url = {https://odihpn.org/wp-content/uploads/2021/11/HPN-Network-Paper_AI_web_181121.pdf},
+    language = {en},
+	number = {1},
+	journal = {Humanitarian Practice Network - Humanitarian Policy Group},
+	author = {Spencer, Sarah W },
+	month = nov,
+    year = {2021},
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@article{tomasev_ai_2020,
+	title = {{AI} for social good: unlocking the opportunity for positive impact},
+	volume = {11},
+	issn = {2041-1723},
+	shorttitle = {{AI} for social good},
+	url = {https://www.nature.com/articles/s41467-020-15871-z},
+	doi = {10.1038/s41467-020-15871-z},
+	abstract = {Abstract
+            Advances in machine learning (ML) and artificial intelligence (AI) present an opportunity to build better tools and solutions to help address some of the world’s most pressing challenges, and deliver positive social impact in accordance with the priorities outlined in the United Nations’ 17 Sustainable Development Goals (SDGs). The AI for Social Good (AI4SG) movement aims to establish interdisciplinary partnerships centred around AI applications towards SDGs. We provide a set of guidelines for establishing successful long-term collaborations between AI researchers and application-domain experts, relate them to existing AI4SG projects and identify key opportunities for future AI applications targeted towards social good.},
+	language = {en},
+	number = {1},
+	urldate = {2023-02-13},
+	journal = {Nature Communications},
+	author = {Tomašev, Nenad and Cornebise, Julien and Hutter, Frank and Mohamed, Shakir and Picciariello, Angela and Connelly, Bec and Belgrave, Danielle C. M. and Ezer, Daphne and Haert, Fanny Cachat van der and Mugisha, Frank and Abila, Gerald and Arai, Hiromi and Almiraat, Hisham and Proskurnia, Julia and Snyder, Kyle and Otake-Matsuura, Mihoko and Othman, Mustafa and Glasmachers, Tobias and Wever, Wilfried de and Teh, Yee Whye and Khan, Mohammad Emtiyaz and Winne, Ruben De and Schaul, Tom and Clopath, Claudia},
+	month = may,
+	year = {2020},
+	pages = {2468},
+	file = {Full Text:C\:\\Users\\zkbah\\Zotero\\storage\\C5V3MVNH\\Tomašev et al. - 2020 - AI for social good unlocking the opportunity for .pdf:application/pdf},
+}
+
+@incollection{michelucci_human_2013,
+	address = {New York, NY},
+	title = {Human {Computation} for {Disaster} {Response}},
+	isbn = {978-1-4614-8805-7 978-1-4614-8806-4},
+	url = {https://link.springer.com/10.1007/978-1-4614-8806-4_11},
+	language = {en},
+	urldate = {2023-02-13},
+	booktitle = {Handbook of {Human} {Computation}},
+	publisher = {Springer New York},
+	author = {Meier, Patrick},
+	editor = {Michelucci, Pietro},
+	year = {2013},
+	doi = {10.1007/978-1-4614-8806-4_11},
+	pages = {95--104},
+}
+
+@article{dwivedi_artificial_2021,
+	title = {Artificial {Intelligence} ({AI}): {Multidisciplinary} perspectives on emerging challenges, opportunities, and agenda for research, practice and policy},
+	volume = {57},
+	issn = {02684012},
+	shorttitle = {Artificial {Intelligence} ({AI})},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S026840121930917X},
+	doi = {10.1016/j.ijinfomgt.2019.08.002},
+	language = {en},
+	urldate = {2023-02-13},
+	journal = {International Journal of Information Management},
+	author = {Dwivedi, Yogesh K. and Hughes, Laurie and Ismagilova, Elvira and Aarts, Gert and Coombs, Crispin and Crick, Tom and Duan, Yanqing and Dwivedi, Rohita and Edwards, John and Eirug, Aled and Galanos, Vassilis and Ilavarasan, P. Vigneswara and Janssen, Marijn and Jones, Paul and Kar, Arpan Kumar and Kizgin, Hatice and Kronemann, Bianca and Lal, Banita and Lucini, Biagio and Medaglia, Rony and Le Meunier-FitzHugh, Kenneth and Le Meunier-FitzHugh, Leslie Caroline and Misra, Santosh and Mogaji, Emmanuel and Sharma, Sujeet Kumar and Singh, Jang Bahadur and Raghavan, Vishnupriya and Raman, Ramakrishnan and Rana, Nripendra P. and Samothrakis, Spyridon and Spencer, Jak and Tamilmani, Kuttimani and Tubadji, Annie and Walton, Paul and Williams, Michael D.},
+	month = apr,
+	year = {2021},
+	pages = {101994},
+	file = {Full Text:C\:\\Users\\zkbah\\Zotero\\storage\\99VIHDTV\\Dwivedi et al. - 2021 - Artificial Intelligence (AI) Multidisciplinary pe.pdf:application/pdf},
+}
+
+
+
+@article{coppi_explicability_2021,
+	title = {Explicability of humanitarian {AI}: a matter of principles},
+	volume = {6},
+	issn = {2364-3412, 2364-3404},
+	shorttitle = {Explicability of humanitarian {AI}},
+	url = {https://jhumanitarianaction.springeropen.com/articles/10.1186/s41018-021-00096-6},
+	doi = {10.1186/s41018-021-00096-6},
+	language = {en},
+	number = {1},
+	urldate = {2023-02-15},
+	journal = {Journal of International Humanitarian Action},
+	author = {Coppi, Giulio and Moreno Jimenez, Rebeca and Kyriazi, Sofia},
+	month = dec,
+	year = {2021},
+	pages = {19},
+	file = {Full Text:C\:\\Users\\zkbah\\Zotero\\storage\\Z7FZZ8E7\\Coppi et al. - 2021 - Explicability of humanitarian AI a matter of prin.pdf:application/pdf},
+}
+
+@article{petch_opening_2022,
+	title = {Opening the {Black} {Box}: {The} {Promise} and {Limitations} of {Explainable} {Machine} {Learning} in {Cardiology}},
+	volume = {38},
+	issn = {0828282X},
+	shorttitle = {Opening the {Black} {Box}},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0828282X21007030},
+	doi = {10.1016/j.cjca.2021.09.004},
+	language = {en},
+	number = {2},
+	urldate = {2023-02-15},
+	journal = {Canadian Journal of Cardiology},
+	author = {Petch, Jeremy and Di, Shuang and Nelson, Walter},
+	month = feb,
+	year = {2022},
+	pages = {204--213},
+	file = {Full Text:C\:\\Users\\zkbah\\Zotero\\storage\\9Y4I82GA\\Petch et al. - 2022 - Opening the Black Box The Promise and Limitations.pdf:application/pdf},
+}
+
+@article{wallace_new_2022,
+	title = {New {Reasons} for {Forced} {Displacement}: {A} {Multimodal} {Discourse} {Analysis} of the {Construction} of {Refugee} {Identity}},
+	volume = {16},
+	issn = {1751-2786, 1751-2794},
+	shorttitle = {New {Reasons} for {Forced} {Displacement}},
+	url = {https://www.tandfonline.com/doi/full/10.1080/17512786.2021.1981153},
+	doi = {10.1080/17512786.2021.1981153},
+	language = {en},
+	number = {2-3},
+	urldate = {2023-02-15},
+	journal = {Journalism Practice},
+	author = {Wallace, Ryan},
+	month = mar,
+	year = {2022},
+	pages = {244--261},
+}
+
+@book{zaman_resettlement_2022,
+	address = {Abingdon, Oxon; New York, NY},
+	series = {Routledge studies in development, displacement and resettlement},
+	title = {Resettlement in {Asian} countries: legislation, administration and struggles for rights},
+	isbn = {978-1-00-051298-4 978-1-00-315978-0},
+	shorttitle = {Resettlement in {Asian} countries},
+	publisher = {Routledge},
+	editor = {Zaman, Mohammad and Nair, Reshmy and Shi, Guoqing},
+	year = {2022},
+	keywords = {Asia, Asians, Forced migration, Land settlement, Law and legislation, Real estate development, Relocation},
+}
+
+
+@online{Griffiths_website_2022,
+    author = "Martin Griffiths",
+    title = "Humanitarian Action: Foreword by the Emergency Relief Coordinator",
+    url  = "https://humanitarianaction.info/article/foreword-emergency-relief-coordinator-0",
+    addendum = "(accessed: 02.16.2023)",
+    keywords = "Humanitarian action"
+}
+
+
+@article{piccialli_role_2021,
+	title = {The {Role} of {Artificial} {Intelligence} in {Fighting} the {COVID}-19 {Pandemic}},
+	volume = {23},
+	issn = {1387-3326, 1572-9419},
+	url = {https://link.springer.com/10.1007/s10796-021-10131-x},
+	doi = {10.1007/s10796-021-10131-x},
+	language = {en},
+	number = {6},
+	urldate = {2023-02-16},
+	journal = {Information Systems Frontiers},
+	author = {Piccialli, Francesco and di Cola, Vincenzo Schiano and Giampaolo, Fabio and Cuomo, Salvatore},
+	month = dec,
+	year = {2021},
+	pages = {1467--1497},
+	file = {Full Text:C\:\\Users\\zkbah\\Zotero\\storage\\VRS3QICE\\Piccialli et al. - 2021 - The Role of Artificial Intelligence in Fighting th.pdf:application/pdf},
+}
+
+
+@book{corbin_basics_2015,
+	address = {Los Angeles},
+	edition = {Fourth edition},
+	title = {Basics of qualitative research: techniques and procedures for developing grounded theory},
+	isbn = {978-1-4129-9746-1},
+	shorttitle = {Basics of qualitative research},
+	publisher = {SAGE},
+	author = {Corbin, Juliet M. and Strauss, Anselm L.},
+	year = {2015},
+	keywords = {Grounded theory, Qualitative research, Social sciences, Statistical methods},
+}
+
+
+Yes, it is possible to create a proof of concept for building a machine learning model for developing a classifier and then applying entity extraction recognition algorithm to the classified data to extract relevant information. Here's an example of how to create a proof of concept for this scenario:
+
+    Define the problem: The first step is to define the problem and identify the data that will be used for the proof of concept. For example, let's say the problem is to classify customer feedback into positive, negative, or neutral categories, and then extract relevant entities such as product names, features, and sentiment.
+
+    Collect and preprocess the data: Once the problem is defined, the next step is to collect and preprocess the data. This involves cleaning the data, removing irrelevant information, and formatting the data in a way that can be used for machine learning. The data can be collected from various sources such as social media, customer reviews, or survey responses.
+
+    Develop the classifier: The next step is to develop a machine learning model for the classifier. This can be done using various algorithms such as logistic regression, decision trees, or support vector machines. The model should be trained and tested on the data to ensure that it is accurate and reliable.
+
+    Apply entity extraction algorithm: Once the data is classified, the next step is to apply an entity extraction algorithm to extract relevant entities from the data. This can be done using techniques such as named entity recognition or sentiment analysis.
+
+    Evaluate the results: The final step is to evaluate the results of the proof of concept. This involves analyzing the accuracy of the classifier and the effectiveness of the entity extraction algorithm. Any issues or limitations should be identified and addressed before moving to the next phase of development.
+
+In conclusion, creating a proof of concept for building a machine learning model for developing a classifier and then applying entity extraction recognition algorithm to the classified data to extract relevant information involves several steps, including defining the problem, collecting and preprocessing the data, developing the classifier, applying entity extraction algorithm, and evaluating the results.
+
+
+
